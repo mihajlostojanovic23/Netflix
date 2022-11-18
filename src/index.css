@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  overflow: hidden;
+}
+
+.active {
+  background-color: rgb(255, 243, 72);
+}
+
+.menu_item_active {
+  border: 2px solid white;
+}
