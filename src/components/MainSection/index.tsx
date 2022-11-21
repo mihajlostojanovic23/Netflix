@@ -21,6 +21,87 @@ function MainSection() {
     setColumn,
   } = useContext(NavContext);
 
+  const menu = document.querySelectorAll(`.menu_category${column} .cat_item`);
+  const categories = document.querySelectorAll('.categories');
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const ArrowRight = () => {
+    menu.forEach((item) => item.classList.remove('menu_item_active'));
+
+    if (index === menu.length - 1) {
+      setIndex(0);
+      setPositionX(0);
+
+      menu[index].classList.add('menu_item_active');
+    } else {
+      setPositionX(positionX - 210);
+
+      setIndex(index + 1);
+      console.log(positionX);
+    }
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const ArrowLeft = () => {
+    menu.forEach((item) => item.classList.remove('menu_item_active'));
+    if (index > 0) {
+      setPositionX(positionX + 210);
+      setIndex(index - 1);
+    } else {
+      setIndex(0);
+      setPositionX(0);
+      setPositionY(0);
+      setIndicator('SideBar');
+      setColumn(0);
+    }
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const ArrowUp = () => {
+    if (column > 0) {
+      console.log(categories.length);
+      menu.forEach((item) => item.classList.remove('menu_item_active'));
+
+      setIndex(0);
+      setPositionX(0);
+      setPositionY(positionY + 210);
+      setColumn(column - 1);
+    }
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const ArrowDown = () => {
+    if (categories.length - 2 > column) {
+      console.log(categories.length);
+      menu.forEach((item) => item.classList.remove('menu_item_active'));
+      setPositionY(positionY - 210);
+      setIndex(0);
+      setPositionX(0);
+
+      setColumn(column + 1);
+    }
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const Enter = () => {
+    // eslint-disable-next-line array-callback-return
+    Data.map((items: any) => {
+      console.log(items);
+
+      // eslint-disable-next-line array-callback-return
+      if (items.id === column) {
+        // eslint-disable-next-line array-callback-return
+        items.programs.map((item: any) => {
+          const { title, color } = item;
+          if (parseInt(item.id) === index + 1) {
+            setValue(title);
+            setColor(color);
+          }
+        });
+      }
+    });
+  };
+
   useEffect(() => {
     const menu_container = document.querySelectorAll(`.menu_category${column}`);
     menu_container[0].setAttribute(
@@ -37,80 +118,24 @@ function MainSection() {
     );
 
     const menu = document.querySelectorAll(`.menu_category${column} .cat_item`);
-    const Controller = (e: any) => {
+
+    const func = (e: any) => {
       if (indicator === 'Right') {
-        if (e.key === 'ArrowRight') {
-          menu.forEach((item) => item.classList.remove('menu_item_active'));
-
-          if (index === menu.length - 1) {
-            setIndex(0);
-            setPositionX(0);
-
-            menu[index].classList.add('menu_item_active');
-          } else {
-            setPositionX(positionX - 210);
-
-            setIndex(index + 1);
-            console.log(positionX);
-          }
-        }
-
-        if (e.key === 'ArrowLeft') {
-          menu.forEach((item) => item.classList.remove('menu_item_active'));
-          if (index > 0) {
-            setPositionX(positionX + 210);
-            setIndex(index - 1);
-          } else {
-            setIndex(0);
-            setPositionX(0);
-            setPositionY(0);
-            setIndicator('SideBar');
-            setColumn(0);
-          }
-        }
-
-        if (e.key === 'ArrowDown') {
-          const categories = document.querySelectorAll('.categories');
-          if (categories.length - 2 > column) {
-            console.log(categories.length);
-            menu.forEach((item) => item.classList.remove('menu_item_active'));
-            setPositionY(positionY - 210);
-            setIndex(0);
-            setPositionX(0);
-
-            setColumn(column + 1);
-          }
-        }
-
-        if (e.key === 'ArrowUp') {
-          const categories = document.querySelectorAll('.categories');
-          if (column > 0) {
-            console.log(categories.length);
-            menu.forEach((item) => item.classList.remove('menu_item_active'));
-
-            setIndex(0);
-            setPositionX(0);
-            setPositionY(positionY + 210);
-            setColumn(column - 1);
-          }
-        }
-
-        if (e.key === 'Enter') {
-          // eslint-disable-next-line array-callback-return
-          Data.map((items: any) => {
-            console.log(items);
-
-            // eslint-disable-next-line array-callback-return
-            if (items.id === column) {
-              items.programs.map((item: any) => {
-                const { title, color } = item;
-                if (parseInt(item.id) === index + 1) {
-                  setValue(title);
-                  setColor(color);
-                }
-              });
-            }
-          });
+        switch (e.key) {
+          case 'ArrowRight':
+            ArrowRight();
+            break;
+          case 'ArrowLeft':
+            ArrowLeft();
+            break;
+          case 'ArrowUp':
+            ArrowUp();
+            break;
+          case 'ArrowDown':
+            ArrowDown();
+            break;
+          case 'Enter':
+            Enter();
         }
       }
     };
@@ -118,25 +143,22 @@ function MainSection() {
     if (indicator === 'Right') {
       menu[index].classList.add('menu_item_active');
     }
-    document.addEventListener('keydown', Controller);
+
+    document.addEventListener('keydown', func);
     return () => {
-      document.removeEventListener('keydown', Controller);
+      document.removeEventListener('keydown', func);
     };
   }, [
-    index,
-    setIndex,
-    indicator,
-    setIndicator,
-    value,
-    color,
-    setColor,
-    setValue,
-    positionX,
-    setPositionX,
-    setColumn,
+    ArrowDown,
+    ArrowLeft,
+    ArrowRight,
+    ArrowUp,
+    Enter,
     column,
+    index,
+    indicator,
+    positionX,
     positionY,
-    setPositionY,
   ]);
 
   return (

@@ -233,4 +233,82 @@ export const Data = [
       },
     ],
   },
+  {
+    id: 3,
+    title: 'Musics',
+    programs: [
+      {
+        id: '1',
+        title: 'Music 1',
+        color:
+          'linear-gradient(141deg, rgba(50,71,138,1) 0%, rgba(129,61,61,1) 50%, rgba(50,71,138,1) 100%)',
+      },
+      {
+        id: '2',
+        title: 'Music 2',
+        color:
+          'linear-gradient(141deg, rgba(34,36,43,1) 0%, rgba(129,61,61,1) 50%, rgba(22,30,55,1) 100%)',
+      },
+      {
+        id: '3',
+        title: 'Music 3',
+        color:
+          'linear-gradient(141deg, rgba(5,33,134,1) 0%, rgba(129,61,61,1) 50%, rgba(0,43,177,1) 100%)',
+      },
+      {
+        id: '4',
+        title: 'Music 4',
+        color:
+          'linear-gradient(141deg, rgba(180,187,214,1) 0%, rgba(129,61,61,1) 50%, rgba(30,40,73,1) 100%)',
+      },
+      {
+        id: '5',
+        title: 'Music 5',
+        color:
+          'linear-gradient(141deg, rgba(139,144,139,1) 0%, rgba(129,61,61,1) 50%, rgba(41,47,45,1) 100%)',
+      },
+      {
+        id: '6',
+        title: 'Music 6',
+        color:
+          'linear-gradient(141deg, rgba(139,144,139,1) 0%, rgba(28,15,15,1) 56%, rgba(41,47,45,1) 100%)',
+      },
+      {
+        id: '7',
+        title: 'Music 7',
+        color:
+          'linear-gradient(141deg, rgba(120,72,142,1) 0%, rgba(28,15,15,1) 56%, rgba(72,24,103,1) 100%)',
+      },
+      {
+        id: '8',
+        title: 'Music 8',
+        color:
+          'linear-gradient(141deg, rgba(120,72,142,1) 0%, rgba(117,136,166,1) 56%, rgba(72,24,103,1) 100%)',
+      },
+      {
+        id: '9',
+        title: 'Music 9',
+        color:
+          'linear-gradient(141deg, rgba(120,72,142,1) 0%, rgba(186,83,83,1) 50%, rgba(72,24,103,1) 100%)',
+      },
+      {
+        id: '10',
+        title: 'Music 10',
+        color:
+          'linear-gradient(141deg, rgba(120,72,142,1) 0%, rgba(83,186,182,1) 50%, rgba(72,24,103,1) 100%)',
+      },
+      {
+        id: '11',
+        title: 'Music 11',
+        color:
+          'linear-gradient(141deg, rgba(142,72,79,1) 0%, rgba(118,98,149,1) 50%, rgba(103,24,24,1) 100%)',
+      },
+      {
+        id: '12',
+        title: 'Music 12',
+        color:
+          'linear-gradient(141deg, rgba(97,49,147,1) 0%, rgba(50,25,91,1) 50%, rgba(24,44,103,1) 100%)',
+      },
+    ],
+  },
 ];

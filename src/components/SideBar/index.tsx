@@ -7,32 +7,43 @@ function SideBar() {
   const { index, setIndex, indicator, setIndicator } = useContext(NavContext);
   useEffect(() => {
     const menu = document.querySelectorAll('.item');
+
+    const ArrowDown = () => {
+      menu.forEach((item) => item.classList.remove('active'));
+      if (index === menu.length - 1) {
+        return setIndex(0);
+      }
+      setIndex(index + 1);
+    };
+
+    const ArrowUp = () => {
+      menu.forEach((item) => item.classList.remove('active'));
+      if (index > 0) {
+        setIndex(index - 1);
+      }
+      if (index === 0) {
+        setIndex(menu.length - 1);
+      }
+    };
+
+    const ArrowRight = () => {
+      menu.forEach((item) => item.classList.remove('active'));
+      setIndex(0);
+      setIndicator('Right');
+    };
+
     const Controller = (e: any) => {
       if (indicator === 'SideBar') {
-        if (e.key === 'ArrowDown') {
-          menu.forEach((item) => item.classList.remove('active'));
-
-          if (index === menu.length - 1) {
-            return setIndex(0);
-          }
-          setIndex(index + 1);
-        }
-
-        if (e.key === 'ArrowUp') {
-          menu.forEach((item) => item.classList.remove('active'));
-
-          if (index > 0) {
-            setIndex(index - 1);
-          }
-          if (index === 0) {
-            setIndex(menu.length - 1);
-          }
-        }
-
-        if (e.key === 'ArrowRight') {
-          menu.forEach((item) => item.classList.remove('active'));
-          setIndex(0);
-          setIndicator('Right');
+        switch (e.key) {
+          case 'ArrowDown':
+            ArrowDown();
+            break;
+          case 'ArrowUp':
+            ArrowUp();
+            break;
+          case 'ArrowRight':
+            ArrowRight();
+            break;
         }
       }
     };
